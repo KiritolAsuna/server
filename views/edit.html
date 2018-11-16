@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <title>Dashboard Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="/public/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/public/css/dashboard.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+   
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <form action="/edit" method="post" style="width: 60%;margin:0 auto">
+     <input type="hidden" name="id" value="{{ students.id }}">
+  <div class="form-group">
+    <label for="exampleInputEmail1">名字</label>
+    <input type="text" class="form-control" name="name" value="{{students.name}}">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">性别</label>
+    <div>  <label class="radio-inline">
+    <input type="radio" name="gender"  value="男"> 男
+    </label>
+<label class="radio-inline">
+  <input type="radio" name="gender"  value="女" checked="checked"> 女
+</label>
+    </div>
+  <script> var gender=document.getElementsByName('gender');
+
+    if('{{students.gender}}'=='男')
+    {
+      gender[0].checked='checked';
+    }
+  </script>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputFile">年龄</label>
+    <input type="number" name="age"  value="{{ students.age }}">
+  
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">爱好</label>
+    <input type="text" class="form-control" name="hobbies"  value="{{students.hobbies}}">
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+  </body>
+</html>

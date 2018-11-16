@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<style>
+			li{
+				list-style: none;
+			}
+			.done{
+				text-decoration: line-through;
+				color: #ccc;
+			}
+			.active{
+				width: 100px;
+				height: 100px;
+				background: #ccc;
+			}
+		</style>
+		<script src="node_modules/vue/dist/vue.js"></script>
+	</head>
+	<body>
+	<div id="box">  单价: <input type="number" v-model='price'><br>	
+	数量:  <button v-on:click='down'>-</button>{{number}}<button v-on:click='up'>+</button>
+ <br>
+ 	总价: {{price*number}}
+	</div>
+	<div id="app">
+	<h1>{{todos.filter((item)=>{return item.picked===true}).length}}选中,共{{todos.length}}条</h1>
+		<li v-for='(item,index) in todos' >
+		<input type="checkbox" v-model='item.picked'>
+		<span v-bind:class='{done:item.picked}'>{{item.content}}</span>
+		<button @click='remove(index)'>X</button>
+		</li>
+		<input type="text" v-model='text' @keydown.enter='add'> <button @click='add'>Add</button>
+
+	</div>
+	<div id='ab' v-bind:class="classObject">
+<div v-if="Math.random() > 0.5">
+  Now you see me
+</div>
+<div v-else>
+  Now you don't
+</div>
+   <div v-html='aaa'></div>
+	</div>
+<div id='example-3'>
+  <input type="checkbox" value="Jack" v-model="checkedNames">
+  <label for="jack">Jack</label>
+  <input type="checkbox" value="John" v-model="checkedNames">
+  <label for="john">John</label>
+  <input type="checkbox"  value="Mike" v-model="checkedNames">
+  <label for="mike">Mike</label>
+  <br>
+  <span>Checked names: {{ checkedNames }}</span>
+</div>
+	</body>
+	<script>
+	 new Vue({
+	 	el:'#box',
+	 	data:{
+	 		price:5,
+	 		number:1
+	 	},
+	 	methods:{
+	 		down(){
+	 			if(this.number>1){
+	 				this.number--
+	 		
+	 			}
+	 		},
+	 		up(){
+	 			this.number++
+	 		
+	 		}
+	 	}
+	 });
+    var todos=[
+	    {
+	    	content:'吃饭',
+	    	picked:true
+	    },
+	    {
+	    	content:'睡觉',
+	    	picked:false
+	    },
+	    {
+	    	content:'打豆豆',
+	    	picked:true
+	    },
+	    {
+	    	content:'LOL',
+	    	picked:false
+	    }
+	];
+
+	 new Vue({
+	 	el:'#app',
+	 	data:{
+	 		todos,
+	 		text:''
+	 	},
+	 	methods:{
+	 		add(){
+	 			this.todos.push({
+	 				content:this.text,
+	 				picked:false
+	 			})
+	 				this.text='';
+	 		},
+	 		remove(index){
+	 			this.todos.splice(index,1);
+	 		
+	 		}
+	 	}
+	 });
+
+
+
+	 new Vue({
+	 	el:'#ab',
+	 	data: {
+	 		aaa:'<h1><a href="#">sss</a></h1>',
+  isActive: true,
+  error: null
+},
+computed: {
+  classObject: function () {
+    return {
+      active: this.isActive && !this.error,
+      'text-danger': this.error && this.error.type === 'fatal'
+    }
+  }
+}
+	 });
+	var bbb= new Vue({
+  el: '#example-3',
+  data: {
+    checkedNames: []
+  }
+})
+	</script>
+	</html>	
